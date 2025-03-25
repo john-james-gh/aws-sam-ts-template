@@ -1,12 +1,14 @@
 import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda"
 
-export const handler = (event: APIGatewayProxyEvent): APIGatewayProxyResult => {
+export const handler = async (
+  event: APIGatewayProxyEvent,
+): Promise<APIGatewayProxyResult> => {
   console.info("event", event)
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "hello everyone!",
+      message: "hello everyone",
     }),
   }
 }
