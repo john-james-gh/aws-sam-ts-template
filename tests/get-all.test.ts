@@ -14,4 +14,14 @@ describe("get-all handler", () => {
     expect(result.statusCode).toBe(200)
     expect(body.message).toBe("hello everyone!")
   })
+
+  it("should throw an error for non-GET requests", async () => {
+    const event = {
+      httpMethod: "POST",
+    } as APIGatewayProxyEvent
+
+    await expect(handler(event)).rejects.toThrow(
+      /handler only accepts GET method/,
+    )
+  })
 })

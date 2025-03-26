@@ -17,6 +17,20 @@ const logger = pino({
 export const handler = async (
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> => {
+  if (event.httpMethod !== "GET") {
+    logger.error(
+      {
+        httpMethod: event.httpMethod,
+        path: event.path,
+      },
+      `invalid method`,
+    )
+
+    throw new Error(
+      `handler only accepts GET method, you tried: ${event.httpMethod}`,
+    )
+  }
+
   logger.info(
     {
       path: event.path,
