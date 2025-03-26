@@ -16,6 +16,12 @@ This repository contains a template for developing AWS Lambda functions using No
   sam local invoke MyTemplateGetAllFunction --event events/get-all-event.json
   ```
 
+- **Remote invoke your function:**
+
+  ```bash
+  sam remote invoke MyTemplateGetAllFunction --stack-name aws-sam-ts-template
+  ```
+
 - **Start the local API Gateway:**
 
   ```bash
@@ -25,7 +31,7 @@ This repository contains a template for developing AWS Lambda functions using No
 - **Validate the SAM template:**
 
   ```bash
-  sam validate
+  sam validate --lint
   ```
 
 - **Deploy the stack (guided mode):**

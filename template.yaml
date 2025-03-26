@@ -16,9 +16,24 @@ Resources:
       StageName: Prod
       Auth:
         ApiKeyRequired: true
+      AccessLogSetting:
+        DestinationArn: !GetAtt MyTemplateRestApiLogGroup.Arn
+        Format: "$context.requestId - $context.identity.sourceIp - $context.httpMethod $context.resourcePath - $context.status"
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          LoggingLevel: INFO
+          MetricsEnabled: true
+
+  MyTemplateRestApiLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/apigateway/${MyTemplateRestApi}
+      RetentionInDays: 7
 
   MyTemplateUsagePlan:
     Type: AWS::ApiGateway::UsagePlan
+    DependsOn: MyTemplateRestApiProdStage
     Properties:
       ApiStages:
         - ApiId: !Ref MyTemplateRestApi
