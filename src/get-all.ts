@@ -17,12 +17,32 @@ const logger = pino({
 export const handler = async (
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> => {
-  logger.info({ event }, "Event")
+  logger.info(
+    {
+      path: event.path,
+      httpMethod: event.httpMethod,
+      headers: event.headers,
+      query: event.queryStringParameters,
+      body: event.body,
+    },
+    "received event",
+  )
 
-  return {
+  const response = {
     statusCode: 200,
     body: JSON.stringify({
       message: "hello everyone!",
     }),
   }
+
+  logger.info(
+    {
+      path: event.path,
+      statusCode: response.statusCode,
+      body: JSON.parse(response.body),
+    },
+    "sending response",
+  )
+
+  return response
 }
