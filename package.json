@@ -2,7 +2,7 @@
   "name": "aws-sam-ts-template",
   "type": "module",
   "scripts": {
-    "compile": "tsc",
+    "type-check": "tsc",
     "lint": "eslint . --fix",
     "test": "jest",
     "format": "prettier --write ."
