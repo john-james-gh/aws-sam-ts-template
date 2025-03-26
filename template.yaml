@@ -10,15 +10,51 @@ Globals:
       - x86_64
 
 Resources:
-  GetAllFunction:
+  MyTemplateRestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth:
+        ApiKeyRequired: true
+
+  MyTemplateUsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties:
+      ApiStages:
+        - ApiId: !Ref MyTemplateRestApi
+          Stage: Prod
+      Throttle:
+        BurstLimit: 100
+        RateLimit: 50
+
+  MyTemplateApiKey:
+    Type: AWS::ApiGateway::ApiKey
+    Properties:
+      Enabled: true
+
+  MyUsagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref MyTemplateApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref MyTemplateUsagePlan
+
+  MyTemplateGetAllFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: get-all
-      CodeUri: dist/
-      Handler: get-all.handler
+      Handler: src/get-all.handler
       Events:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref MyTemplateRestApi
             Path: /get-all
             Method: GET
+    Metadata:
+      BuildMethod: esbuild
+
+  MyTemplateGetAllFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${MyTemplateGetAllFunction}
+      RetentionInDays: 7

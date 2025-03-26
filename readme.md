@@ -13,7 +13,7 @@ This repository contains a template for developing AWS Lambda functions using No
 - **Local invoke your function:**
 
   ```bash
-  sam local invoke GetAllFunction --event events/get-all-event.json
+  sam local invoke MyTemplateGetAllFunction --event events/get-all-event.json
   ```
 
 - **Start the local API Gateway:**
