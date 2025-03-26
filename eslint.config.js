@@ -6,10 +6,13 @@ import eslintConfigPrettier from "eslint-config-prettier/flat"
 
 export default defineConfig([
   { ignores: ["dist", ".aws-sam", "coverage"] },
-  { files: ["**/*.{js,mjs,cjs,ts}"] },
   {
-    files: ["**/*.{js,mjs,cjs,ts}"],
+    files: ["src/**/*.{js,mjs,cjs,ts}"],
     languageOptions: { globals: globals.node },
+  },
+  {
+    files: ["tests/**/*.test.{js,mjs,cjs,ts}"],
+    languageOptions: { globals: globals.jest },
   },
   {
     files: ["**/*.{js,mjs,cjs,ts}"],
