@@ -79,7 +79,7 @@ sam deploy --guided
 
 ---
 
-## 🌈 Why Use This Template?
+## 🚀 Why Use This Template?
 
 > 💡 "Don't reinvent the wheel — but make sure your wheel isn't square."
 
