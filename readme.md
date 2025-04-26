@@ -1,6 +1,6 @@
 # 🦄 AWS SAM Template for Node.js + TypeScript Lambda
 
-Welcome to the **AWS SAM TypeScript Lambda Template** — a clean, modern starting point for building AWS Lambda functions with Node.js and TypeScript, powered by the **AWS Serverless Application Model (SAM)**. 🚀
+Welcome to the **AWS SAM TypeScript Lambda Template**. A clean, modern starting point for building AWS Lambda functions with Node.js and TypeScript, powered by the **AWS Serverless Application Model (SAM)**. 🚀
 
 This template helps you quickly spin up serverless projects with best practices baked in: strict type checking, linting, testing, and formatting included.
 
